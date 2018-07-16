@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://image/object/0714_object-08.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 531.371, 100.357 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 308.35, 12.5579 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="body" type="StaticBody2D" parent="." index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="Sprite" type="Sprite" parent="body" index="0"]
+
+texture = ExtResource( 1 )
+
+[node name="1" type="CollisionShape2D" parent="body" index="1"]
+
+position = Vector2( 0.629028, 91.8537 )
+shape = SubResource( 1 )
+
+[node name="2" type="CollisionShape2D" parent="body" index="2"]
+
+position = Vector2( -7.19501, -178.793 )
+shape = SubResource( 2 )
+
+[node name="3" type="CollisionPolygon2D" parent="body" index="3"]
+
+build_mode = 0
+polygon = PoolVector2Array( -530.588, -131.09, -530.101, -1.36836, -325.277, -0.393005, -442.319, -134.016 )
+
+[node name="4" type="CollisionPolygon2D" parent="body" index="4"]
+
+build_mode = 0
+polygon = PoolVector2Array( 321.674, 0.0334473, 441.544, -130.957, 530.703, -130.417, 530.703, -0.190155 )
+
+

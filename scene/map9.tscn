@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://image/object/0714_object-11.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 99.7331, 24.9963 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 100.149, 25.4378 )
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 99.8635, 25.3438 )
+
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 100.573, 25.7244 )
+
+[sub_resource type="RectangleShape2D" id=5]
+
+custom_solver_bias = 0.0
+extents = Vector2( 151.033, 271.061 )
+
+[sub_resource type="RectangleShape2D" id=6]
+
+custom_solver_bias = 0.0
+extents = Vector2( 149.3, 50.4177 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="body" type="StaticBody2D" parent="." index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="Sprite" type="Sprite" parent="body" index="0"]
+
+texture = ExtResource( 1 )
+
+[node name="1" type="CollisionShape2D" parent="body" index="1"]
+
+position = Vector2( 204.801, -0.709175 )
+shape = SubResource( 1 )
+
+[node name="2" type="CollisionShape2D" parent="body" index="2"]
+
+position = Vector2( -17.8468, 118.973 )
+shape = SubResource( 2 )
+
+[node name="3" type="CollisionShape2D" parent="body" index="3"]
+
+position = Vector2( -76.7761, -132.195 )
+shape = SubResource( 3 )
+
+[node name="4" type="CollisionShape2D" parent="body" index="4"]
+
+position = Vector2( 183.695, -277.775 )
+shape = SubResource( 4 )
+
+[node name="5" type="CollisionShape2D" parent="body" index="5"]
+
+position = Vector2( 491.488, 31.5678 )
+shape = SubResource( 5 )
+
+[node name="6" type="CollisionShape2D" parent="body" index="6"]
+
+position = Vector2( -281.417, 252.258 )
+shape = SubResource( 6 )
+
+[node name="7" type="CollisionPolygon2D" parent="body" index="7"]
+
+build_mode = 0
+polygon = PoolVector2Array( -429.558, 62.6241, -490.736, 1.88659, -640.379, 1.88659, -640.381, 302.631, -429.64, 302.631 )
+
+
