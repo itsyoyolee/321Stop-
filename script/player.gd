@@ -20,6 +20,7 @@ var control_type = 0
 var ready = false
 var player_color = null
 var is_last = true
+var is_first = false
 var state = 0; # 0 = prepare 1 = normal 2 = freeze 3 = game over
 var linear_vel = Vector2()
 var onair_time = 0 #
@@ -52,7 +53,12 @@ func _physics_process(delta):
 	elif (state == 2):#被麻痺
 		freezeColdDown(delta);
 		anim(delta)
-		
+	elif (state == 3):#被淘汰
+		anim(delta)
+	elif (state == 5):#選腳色
+		controlMatching()
+		move(delta)
+		anim(delta)
 	pass
 
 func move(var delta):
@@ -109,17 +115,21 @@ func move(var delta):
 func anim(var delta):
 	
 	#new_anim = "idle"
+	if RIGHT:
+		$body.get_node("Sprite").scale.x = 1
+	elif LEFT:
+		$body.get_node("Sprite").scale.x = -1
+	else:
+		new_anim = "idle"
 	if on_floor:
 		if RIGHT:
-			$body.get_node("Sprite").scale.x = 1
 			new_anim = "run"
 		elif LEFT:
-			$body.get_node("Sprite").scale.x = -1
 			new_anim = "run"
 		else:
-			new_anim = "idle"
-	else:
+			new_anim = "idle"			
 
+	else:
 		if linear_vel.y > 50:
 			new_anim = "jump"
 			
@@ -127,6 +137,8 @@ func anim(var delta):
 		new_anim = "freeze"
 		$body/effect.show()
 	elif(state == 1):
+		$body/effect.hide()
+	elif(state == 5):
 		$body/effect.hide()
 	if new_anim != anim:
 		anim = new_anim
@@ -160,6 +172,9 @@ func Start():
 func SetLast(value):
 	is_last = value
 	pass
+func SetFirst(value):
+	is_first = value
+	pass
 func getX():
 	return self.global_position.x
 	pass
@@ -170,13 +185,14 @@ func gameOver():
 func setColor(index):
 	
 	if(index == 0):
-		bodyColor =  Color("74bb57")#green
+		bodyColor =  Color("#854eae")#purple
 	elif (index == 1):
-		bodyColor =  Color("854eae")#red
-	elif (index == 2):
-		bodyColor =  Color("#bd3e3e")#purple
-	elif (index == 3):	
 		bodyColor =  Color("dcce5d")#yellow
+	elif (index == 2):
+		bodyColor =  Color("bd3e3e")#red
+	elif (index == 3):	
+		bodyColor =  Color("74bb57")#green
+
 	$body/Sprite.set_modulate(bodyColor)
 	print($body/Sprite.get_modulate())
 	pass

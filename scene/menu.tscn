@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://主頁面.wav" type="AudioStream" id=1]
+[ext_resource path="res://image/start_BG.png" type="Texture" id=2]
+[ext_resource path="res://image/EXIT.png" type="Texture" id=3]
+[ext_resource path="res://image/EXIT_2.png" type="Texture" id=4]
+[ext_resource path="res://script/exitButton.gd" type="Script" id=5]
+[ext_resource path="res://image/START.png" type="Texture" id=6]
+[ext_resource path="res://image/START_2.png" type="Texture" id=7]
+[ext_resource path="res://script/startButton.gd" type="Script" id=8]
+[ext_resource path="res://image/start_eye.png" type="Texture" id=9]
+
+[sub_resource type="Animation" id=1]
+resource_name = "eyeMove"
+length = 0.7
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 674.939, 241.714 ), Vector2( 679.371, 260.55 ), Vector2( 689.344, 258.334 ), Vector2( 713.72, 271.631 ), Vector2( 693.776, 256.118 ), Vector2( 693.776, 256.118 ), Vector2( 693.776, 256.118 ) ]
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 532, 427 )
+stream = ExtResource( 1 )
+autoplay = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+
+[node name="exitButton" type="TextureButton" parent="."]
+margin_left = 555.0
+margin_top = 549.0
+margin_right = 705.0
+margin_bottom = 649.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+script = ExtResource( 5 )
+
+[node name="startButton" type="TextureButton" parent="."]
+margin_left = 532.0
+margin_top = 427.0
+margin_right = 732.0
+margin_bottom = 527.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 7 )
+script = ExtResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "eyeMove"
+anims/eyeMove = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 683.765, 259.574 )
+texture = ExtResource( 9 )
+[connection signal="pressed" from="exitButton" to="exitButton" method="_on_exitButton_pressed"]
+[connection signal="pressed" from="startButton" to="startButton" method="_on_startButton_pressed"]
